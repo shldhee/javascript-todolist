@@ -1,28 +1,39 @@
-var todoArray = [];
+var todoList = [];
 var i = 0;
 
-function Todo() {
-  this.addTodo = function(item) {
-    var todolist = {
-      id: i++,
-      item: item,
-      state: false,
-    };
-    todoArray.push(todolist);
-  };
+function Todo() {}
 
-  this.finishTodo = function(item) {
-    for (var i = 0; i < todoArray.length; i++) {
-      for (var key in todoArray[i]) {
-        if (item === todoArray[i][key]) {
-          todoArray[i].state = !todoArray[i].state;
-          //console.log(todoArray);
-          return;
-        }
+function render() {
+  console.log('------------------');
+  for (var i = 0; i < todoList.length; i++) {
+    console.log(
+      'Todo : ' + todoList[i].item + ' , 진행상태 : ' + todoList[i].state
+    );
+  }
+  console.log('------------------');
+}
+
+function changeTodo(item) {
+  for (var i = 0; i < todoList.length; i++) {
+    for (var key in todoList[i]) {
+      if (item === todoList[i][key]) {
+        todoList[i].state = !todoList[i].state;
+        render();
+        return;
       }
     }
+  }
+}
+
+function addTodo(item) {
+  var newTodoList = {
+    id: i++,
+    item: item,
+    state: false,
+    progress: this.state ? '완료' : '진행중',
   };
-  // TodoVIew에게 밥먹기 추가 후 응답
+  todoList.push(newTodoList);
+  render();
 }
 
 function TodoView() {
@@ -49,3 +60,6 @@ function TodoItem(title) {
     finish 완료
     delete 삭제?
   */
+
+addTodo('밥먹기');
+addTodo('설거지하기');
