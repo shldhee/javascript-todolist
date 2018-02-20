@@ -1,4 +1,4 @@
-// TODO: refactoring code to functinal!
+// TODO: refactoring code to functional!
 var todoList = [];
 var i = 0;
 
