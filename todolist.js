@@ -8,14 +8,13 @@ var todoObj = {
 
   },
 
-  render() {
-    console.log('------------------');
-    for (var i = 0; i < this.todoList.length; i++) {
-      console.log(
-        'Todo : ' + this.todoList[i].item + ' , 진행상태 : ' + this.todoList[i].state
-      );
-    }
-    console.log('------------------');
+  render(o) {
+    var li = document.createElement('li');
+
+    // for (var i = 0; i < this.todoList.length; i++) {
+      li.append('Todo : ' + o.item + ' , 진행상태 : ' + o.state);
+      document.getElementById("checkList").append(li);
+    // }
   },
 
   change(item) {
@@ -39,7 +38,7 @@ var todoObj = {
     };
 
     this.todoList.push(newList);
-    this.render();
+    this.render(newList);
   },
 
   todoView() {
