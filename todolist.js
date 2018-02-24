@@ -13,14 +13,11 @@ var todoObj = {
     // }
   },
 
-  change(item) {
-    for (var i = 0; i < todoList.length; i++) {
-      for (var key in todoList[i]) {
-        if (item === todoList[i][key]) {
-          todoList[i].state = !todoList[i].state;
-          render();
-          return;
-        }
+  changeTodo(id) {
+    for(var i = 0; i < this.todoList.length; i++) {
+      if(this.todoList[i].id === id) {
+        this.todoList[i].state = !this.todoList[i].state;
+        break;
       }
     }
   },
@@ -40,6 +37,7 @@ var todoObj = {
   init() {
     this.addTodo('밥먹기');
     this.addTodo('설거지하기');
+    this.changeTodo(0);
   }
 }
 
