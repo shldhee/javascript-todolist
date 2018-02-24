@@ -1,9 +1,9 @@
 // TODO: refactoring code to functional
 // TODO: Set singleton pattern for todolist
 var todoObj = {
-  todoList: new Array(),
+  todoList: [],
   idx: 0,
-  
+
   todo() {
 
   },
