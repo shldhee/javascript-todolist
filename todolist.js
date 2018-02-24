@@ -4,10 +4,6 @@ var todoObj = {
   todoList: [],
   idx: 0,
 
-  todo() {
-
-  },
-
   render(o) {
     var li = document.createElement('li');
 
@@ -39,16 +35,6 @@ var todoObj = {
 
     this.todoList.push(newList);
     this.render(newList);
-  },
-
-  todoView() {
-    // Todo에게 밥먹기 추가 요청
-  },
-
-  todoItem(task) {
-    this.id = this.idx++;
-    this.task = task;
-    this.state = false;
   },
 
   init() {
