@@ -4,42 +4,21 @@ var todoObj = {
   todoList: [],
   idx: 0,
 
+  // 뷰단에 그리기
   render() {
-    // for(i = 0; i < this.todoList.length; i++) {
-    //   console.log(
-    //     "ID : " + this.todoList[i].id +
-    //     ", 할일 : " + this.todoList[i].item +
-    //     ", 상태 : " + this.todoList[i].state
-    //   );
-    // }
-    // console.log('-----------------------------');
-    // var li = document.createElement('li');
-    // for (var i = 0; i < this.todoList.length; i++) {
-    //   li.append('Todo : ' + this.todoList[i].item + ' , 진행상태 : ' + this.todoList[i].state);
-    //   document.getElementById("checkList").append(li);
-    // }
-
     var checkList = document.querySelector("#checkList");
     checkList.innerHTML = "";
 
     for (var i = 0; i < this.todoList.length; i++) {
       var li = document.createElement('li');
-      li.append('Id : ' + this.todoList[i].id + ' , Todo : ' + this.todoList[i].item + ' , 진행상태 : ' + this.todoList[i].state);
+      li.append(this.todoList[i].item);
       checkList.append(li);
+      li.classList.add('todo__list');
     }
     document.querySelector('.container').append(checkList);
   },
 
-  changeTodo(id) {
-    for(var i = 0; i < this.todoList.length; i++) {
-      if(this.todoList[i].id === id) {
-        this.todoList[i].state = !this.todoList[i].state;
-        break;
-      }
-    }
-    this.render();
-  },
-
+  // 할일 추가
   addTodo(item) {
     var newList = {
       id: this.idx++,
@@ -52,6 +31,18 @@ var todoObj = {
     this.render();
   },
 
+  //할일 변경
+  changeTodo(id) {
+    for(var i = 0; i < this.todoList.length; i++) {
+      if(this.todoList[i].id === id) {
+        this.todoList[i].state = !this.todoList[i].state;
+        break;
+      }
+    }
+    this.render();
+  },
+
+  // 할일 삭제
   removeTodo(id) {
     for(var i = 0; i < this.todoList.length; i++) {
       if(this.todoList[i].id === id) {
@@ -62,8 +53,18 @@ var todoObj = {
     this.render();
   },
 
+  // 초기화
   init() {
-    this.addTodo('밥먹기');
+    var todoForm = document.getElementById("todo__form");
+    todoForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+      todoObj.addTodo(todo__input.value);
+      todo__input.value = "";
+      console.log(todoObj.todoList);
+    });
+    // todo__list.addEventListener("click", function() {
+    //   todoObj.changeTodo(this.id);
+    // });
   }
 }
 

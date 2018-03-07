@@ -6,13 +6,90 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <style>
+    * {margin: 0; padding: 0;}
+    body {
+
+    }
+    fieldset { border: none; }
+    legend {
+
+    }
+    .hidden {
+      overflow: hidden!important;
+      position: absolute!important;
+      clip: rect(0 0 0 0)!important;
+      width: 1px!important;
+      height: 1px!important;
+      margin: -1px!important;
+    }
+    li { list-style: none; }
+
+    #wrap { background-color: #9adbbe; width: 100vw; height: 100vh; display: flex;   justify-content: center;  -webkit-align-items: center;  align-items: center; }
+    .container {
+      box-sizing: border-box;
+      padding: 20px;
+      width: 300px;
+      min-height: 500px;
+      background-color: #ffffff;
+      border-radius: 20px;
+    }
+
+    #todo__input {
+      width: 140px;
+      border-radius: 20px;
+      border: 1px solid #cccccc;
+      padding: 10px 20px;
+      transition: 0.3s;
+      outline: none;
+    }
+
+    #todo__input:focus {
+      border-color: #9adbbe;
+    }
+
+    #todo__submit {
+      border-radius: 20px;
+      border: 1px solid #cccccc;
+      padding: 10px 20px;
+      background-color: #ffffff;
+      transition: 0.3s;
+      outline: none;
+      cursor: pointer;
+      color: #9adbbe;
+      border-color: #9adbbe;
+    }
+
+    #todo__submit:hover {
+      color: #ffffff;
+      background-color: #9adbbe;
+    }
+
+    #checkList {
+      padding: 10px;
+    }
+
+    .todo__list {
+      padding: 5px 0;
+      color: #588c73;
+    }
+  </style>
 </head>
 
 <body>
-  <div class="container">
-    <ul id="checkList">
-
-    </ul>
+  <div id="wrap">
+    <div class="container">
+      <form id="todo__form" action="">
+        <fieldset>
+          <label class="hidden" for="todo__input">할일 입력</label>
+          <input id="todo__input" type="text" name="todo__input" value="">
+          <input id="todo__submit" type="submit" value="ADD">
+          <legend class="hidden">투두리스트</legend>
+          <ul id="checkList">
+          </ul>
+        </fieldset>
+      </form>
+    </div>
   </div>
   <script src="./todolist.js"></script>
 </body>
