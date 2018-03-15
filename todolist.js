@@ -6,21 +6,25 @@ var todoObj = {
 
   // 뷰단에 그리기
   render() {
-    console.log(this.todoList);
+    // console.log(this.todoList);
     var checkList = document.querySelector("#checkList");
     checkList.innerHTML = "";
 
     for (var i = 0; i < this.todoList.length; i++) {
+      var createSpan = document.createElement("span");
+      var removeBtn = document.createTextNode("삭제");
+      createSpan.append(removeBtn);
+      createSpan.classList.add("remove__btn");
+
       var li = document.createElement('li');
       if(this.todoList[i].state) {
         li.classList.add("completed");
+        li.append(createSpan);
       }
+
       li.append(this.todoList[i].item);
       checkList.append(li);
       li.classList.add('todo__list');
-      if(this.todoList.state) {
-        li.classList.add('completed');
-      }
       li.setAttribute("data-id",this.todoList[i].id);
     }
     document.querySelector('.container').append(checkList);
@@ -66,15 +70,24 @@ var todoObj = {
   // 초기화
   init() {
     var todoForm = document.getElementById("todo__form");
+    var removeBtn = document.querySelector(".createSpan");
+
     todoForm.addEventListener("submit", function(e) {
       e.preventDefault();
       todoObj.addTodo(todo__input.value);
       todo__input.value = "";
+      todo__input.focus();
     });
 
     document.addEventListener('click',function(e){
        if(e.target && e.target.dataset.id){
         todoObj.changeTodo(~~e.target.dataset.id);
+        return;
+       }
+
+       if(e.target && e.target.className === "remove__btn") {
+         todoObj.removeTodo(~~e.target.parentNode.dataset.id);
+        return;
        }
     });
 
