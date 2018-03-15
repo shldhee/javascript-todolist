@@ -6,27 +6,37 @@ var todoObj = {
 
   // 뷰단에 그리기
   render() {
+    console.log(this.todoList);
     var checkList = document.querySelector("#checkList");
     checkList.innerHTML = "";
 
     for (var i = 0; i < this.todoList.length; i++) {
       var li = document.createElement('li');
+      if(this.todoList[i].state) {
+        li.classList.add("completed");
+      }
       li.append(this.todoList[i].item);
       checkList.append(li);
       li.classList.add('todo__list');
+      if(this.todoList.state) {
+        li.classList.add('completed');
+      }
+      li.setAttribute("data-id",this.todoList[i].id);
     }
     document.querySelector('.container').append(checkList);
   },
 
   // 할일 추가
   addTodo(item) {
+    if(!item) {
+      return false;
+    };
+
     var newList = {
       id: this.idx++,
       item: item,
       state: false,
-      // progress: this.state ? '완료' : '진행중',
     };
-
     this.todoList.push(newList);
     this.render();
   },
@@ -60,11 +70,19 @@ var todoObj = {
       e.preventDefault();
       todoObj.addTodo(todo__input.value);
       todo__input.value = "";
-      console.log(todoObj.todoList);
     });
-    // todo__list.addEventListener("click", function() {
-    //   todoObj.changeTodo(this.id);
-    // });
+
+    document.addEventListener('click',function(e){
+       if(e.target && e.target.dataset.id){
+        todoObj.changeTodo(~~e.target.dataset.id);
+       }
+    });
+
+    todoObj.addTodo("밥먹기");
+    todoObj.addTodo("반찬먹기");
+    todoObj.addTodo("설거지");
+    todoObj.addTodo("샤워하기");
+    todoObj.addTodo("청소하기");
   }
 }
 
