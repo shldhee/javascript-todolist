@@ -90,11 +90,11 @@
          }
       });
 
-      todoObj.addTodo("밥먹기");
-      todoObj.addTodo("반찬먹기");
-      todoObj.addTodo("설거지");
-      todoObj.addTodo("샤워하기");
-      todoObj.addTodo("청소하기");
+      todoObj.addTodo("이직하기");
+      todoObj.addTodo("이력서쓰기");
+      todoObj.addTodo("면접보기");
+      todoObj.addTodo("합격하기");
+      todoObj.addTodo("입사하기");
     }
   }
 
