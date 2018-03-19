@@ -7,29 +7,26 @@
 
     // 뷰단에 그리기
     render() {
-      // console.log(this.todoList);
-      var checkList = document.querySelector("#checkList");
-      checkList.innerHTML = "";
+      var checkListBox = document.querySelector("#checkListBox");
+      checkListBox.innerHTML = "";
 
       for (var i = 0; i < this.todoList.length; i++) {
-        var createSpan = document.createElement("span");
-        // var removeBtn = document.createTextNode("삭제");
-        // createSpan.append(removeBtn);
-        createSpan.textContent = "삭제";
-        createSpan.classList.add("remove__btn");
+        var createRemoveBtn = document.createElement("span");
+        createRemoveBtn.textContent = "삭제";
+        createRemoveBtn.classList.add("remove__btn");
 
         var li = document.createElement('li');
         if(this.todoList[i].state) {
           li.classList.add("completed");
-          li.append(createSpan);
+          li.append(createRemoveBtn);
         }
 
         li.append(this.todoList[i].item);
-        checkList.append(li);
+        checkListBox.append(li);
         li.classList.add('todo__list');
         li.setAttribute("data-id",this.todoList[i].id);
       }
-      document.querySelector('.container').append(checkList);
+      document.querySelector('.container').append(checkListBox);
     },
 
     // 할일 추가
@@ -72,7 +69,7 @@
     // 초기화
     init() {
       var todoForm = document.getElementById("todo__form");
-      var removeBtn = document.querySelector(".createSpan");
+      var removeBtn = document.querySelector(".createRemoveBtn");
 
       todoForm.addEventListener("submit", function(e) {
         e.preventDefault();
